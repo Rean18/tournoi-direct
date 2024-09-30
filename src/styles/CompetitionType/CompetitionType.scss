@@ -1,0 +1,49 @@
+.competition-page {
+    height: 87vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 4vh;
+
+     
+}
+
+.button-group {
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.rules-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2vh;
+    padding: 0 2vw;
+}
+
+.rules {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items:first baseline ;
+    padding: 1vh 0;
+
+        h2 {
+            width: auto;
+            display: inline;
+            white-space: nowrap;
+            font-size: 1.2em;
+            line-height: 2em;
+            text-decoration: underline;
+        }
+        p {
+            font-size: 1em;
+            font-style: italic;
+            line-height: 2em;
+            padding-left: 1em;
+            
+        }
+}

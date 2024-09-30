@@ -1,0 +1,13 @@
+footer {
+  max-width: 1250px;
+  height: 8vh;
+  background-color: var(--color-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer p {
+  color: var(--color-secondary);
+  font-family: var(--font-family);
+  font-weight: var(--large-font-weight);
+}/*# sourceMappingURL=Footer.css.map */

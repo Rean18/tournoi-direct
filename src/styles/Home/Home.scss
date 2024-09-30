@@ -1,0 +1,13 @@
+.main-home {
+    height: 92vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#home-logo {
+    width: 30%;
+    max-width: 800px;
+    margin-bottom: 2rem;
+}

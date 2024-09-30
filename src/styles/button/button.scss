@@ -1,0 +1,27 @@
+.button-container {
+    display: flex;
+
+        button {
+            margin: 1rem;
+            border: none;
+            font-family: var(--font-family);
+            font-size: 1.5em;
+        }
+        .dark {
+            width: 200px;
+            height: 80px;
+            border-radius: 15px;
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+        }
+        .light {
+            width: 40vw;
+            height: 8vh;
+            font-weight: var(--large-font-weight);
+            border-radius: 15px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+
+        }
+
+}
