@@ -1,13 +1,18 @@
 header {
-    max-height: 5vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 1.5vh 5vw;
+  max-height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5vh 5vw;
+
+  button {
+    border: none;
+    background-color: transparent;
+  }
 }
 #logo-pages {
-    max-height: 5vh;
+  max-height: 5vh;
 }
 #return {
-    max-height: 5vh;
+  max-height: 5vh;
 }

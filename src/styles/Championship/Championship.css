@@ -1,0 +1,31 @@
+#options {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#options label {
+  font-size: 1.3em;
+  color: var(--color-secondary);
+  text-align: center;
+  font-weight: var(--large-font-weight);
+}
+#options input,
+#options select {
+  height: 2.5rem;
+  width: 25%;
+  font-size: 1.2em;
+  text-align: center;
+  border-radius: 10px;
+  border: transparent;
+}
+
+.label-wrapper {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+}/*# sourceMappingURL=Championship.css.map */

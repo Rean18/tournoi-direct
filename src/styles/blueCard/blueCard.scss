@@ -1,16 +1,17 @@
 .blue-card {
-    width: 60vw;
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    row-gap: 2vh;
-    background-color: var(--color-primary);
-    border-radius: 20px;
+  width: 60vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 2vh;
+  background-color: var(--color-primary);
+  border-radius: 20px;
 
-        h3 {
-            font-size: 1.7em;
-            color: var(--color-secondary);
-        }
+  h3 {
+    margin-top: 2rem;
+    font-size: 1.7em;
+    color: var(--color-secondary);
+  }
 }

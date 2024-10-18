@@ -6,6 +6,7 @@
   border: none;
   font-family: var(--font-family);
   font-size: 1.5em;
+  cursor: pointer;
 }
 .button-container .dark {
   width: 200px;

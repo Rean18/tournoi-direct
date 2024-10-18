@@ -5,6 +5,10 @@ header {
   align-items: flex-start;
   padding: 1.5vh 5vw;
 }
+header button {
+  border: none;
+  background-color: transparent;
+}
 
 #logo-pages {
   max-height: 5vh;
