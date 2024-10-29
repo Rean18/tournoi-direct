@@ -1,6 +1,6 @@
 .blue-card {
   width: 60vw;
-  height: 50vh;
+  max-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
