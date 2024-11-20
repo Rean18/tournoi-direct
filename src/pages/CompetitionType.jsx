@@ -3,16 +3,22 @@ import { BlueCard } from '../components/common/blueCard';
 import '../styles/CompetitionType/CompetitionType.css';
 
 export function CompetitionType() {
+  const handleCompetitionChoice = (competitionType) => {
+    localStorage.setItem('competitionType', competitionType);
+  };
+
   const buttonConfig = [
     {
       buttonText: 'Championnat',
       route: 'championship',
       style: 'light',
+      onClick: () => handleCompetitionChoice('Championnat'),
     },
     {
       buttonText: 'Coupe',
       route: 'cup',
       style: 'light',
+      onClick: () => handleCompetitionChoice('Coupe'),
     },
   ];
 

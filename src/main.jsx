@@ -1,12 +1,13 @@
 // index.js ou main.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { Layout } from './layout/Layout.jsx';
 import { Home } from './pages/Home.jsx';
 import { CompetitionType } from './pages/CompetitionType.jsx';
-import { Championship } from './pages/Championship.jsx';
-import { Matches } from './pages/Matches.jsx';
+import { ChampionshipRules } from './pages/ChampionshipRules.jsx';
+
+import { ChampionshipDashboard } from './pages/ChampionshipDashboard.jsx';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/competition-type',
-    element: <Layout />,
+    element: <Layout />, // Ne passez pas de children ici
     children: [
       {
         index: true,
@@ -24,15 +25,18 @@ const router = createBrowserRouter([
       },
       {
         path: 'championship',
-        element: <Championship />,
+        element: <Outlet />, // Utiliser Outlet pour les sous-routes
         children: [
           {
+            index: true,
+            element: <ChampionshipRules />,
+          },
+          {
             path: 'matches',
-            element: <Matches />,
+            element: <ChampionshipDashboard />,
           },
         ],
       },
-      // Ajoutez d'autres sous-routes si nécessaire
     ],
   },
 ]);

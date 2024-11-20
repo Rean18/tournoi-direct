@@ -19,6 +19,8 @@
   text-align: center;
   border-radius: 10px;
   border: transparent;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
 }
 
 .label-wrapper {
