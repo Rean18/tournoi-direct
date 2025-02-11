@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { BlueCard } from '../components/common/blueCard';
 import '../styles/Championship/Championship.css';
+import { Button } from '../components/common/button';
 
 export function ChampionshipRules() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    numberOfTeams: '6',
-    twoLeggedTie: 'Avec',
-    victoryPoint: '3',
-    defeatPoint: '2',
-    drawPoint: '1',
+    numberOfTeams: '',
+    twoLeggedTie: '',
+    victoryPoint: '',
+    defeatPoint: '',
+    drawPoint: '',
+    simultMatches: '',
   });
 
   useEffect(() => {
@@ -25,21 +29,72 @@ export function ChampionshipRules() {
     };
     setFormData(newFormData);
     localStorage.setItem('formData', JSON.stringify(newFormData));
+    console.log('Modification réussie');
   };
 
   const handleSubmit = (e) => {
-    if (e) e.preventDefault();
+    e.preventDefault();
     localStorage.setItem('formData', JSON.stringify(formData));
+    navigate('matches');
     console.log('Data :', formData);
   };
 
   const buttonsConfig = [
     {
-      buttonText: 'Validez',
-      route: 'matches',
-      style: 'light',
-      onClick: handleSubmit,
-      type: 'submit',
+      buttonText: '',
+      route: '',
+      style: '',
+      onClick: '',
+      type: '',
+    },
+  ];
+
+  const formConfig = [
+    {
+      id: 'team-number',
+      name: 'numberOfTeams',
+      title: "Nombre d'équipes",
+      type: 'number',
+      value: formData.numberOfTeams,
+    },
+    {
+      id: 'two-legged-tie',
+      name: 'twoLeggedTie',
+      title: 'Matches Aller-Retour',
+      type: 'select',
+      options: [
+        { value: 'non', label: 'Non' },
+        { value: 'oui', label: 'Oui' },
+      ],
+      value: formData.twoLeggedTie,
+    },
+    {
+      id: 'victory-point',
+      name: 'victoryPoint',
+      title: 'Points par victoire',
+      type: 'number',
+      value: formData.victoryPoint,
+    },
+    {
+      id: 'defeat-point',
+      name: 'defeatPoint',
+      title: 'Points par défaite',
+      type: 'number',
+      value: formData.defeatPoint,
+    },
+    {
+      id: 'draw-point',
+      name: 'drawPoint',
+      type: 'number',
+      title: "Points en cas d'égalité",
+      value: formData.drawPoint,
+    },
+    {
+      id: 'simult-matches',
+      name: 'simultMatches',
+      title: 'Nombre de matches joués en simultané',
+      type: 'number',
+      value: formData.simultMatches,
     },
   ];
 
@@ -47,63 +102,43 @@ export function ChampionshipRules() {
     <div>
       <BlueCard cardTitle="Configurez le championnat" buttons={buttonsConfig}>
         <form id="options" onSubmit={handleSubmit}>
-          <div className="label-wrapper">
-            <label htmlFor="team-number">Nombre d{`'`}équipes</label>
-            <input
-              id="team-number"
-              name="numberOfTeams"
-              type="number"
-              value={formData.numberOfTeams}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="label-wrapper">
-            <label htmlFor="two-legged-tie">Matches Aller&#8209;Retour</label>
-            <select
-              id="two-legged-tie"
-              name="twoLeggedTie"
-              value={formData.twoLeggedTie}
-              onChange={handleChange}
-              required
-            >
-              <option value="Avec">Avec</option>
-              <option value="Sans">Sans</option>
-            </select>
-          </div>
-          <div className="label-wrapper">
-            <label htmlFor="victory-point">Points par victoire</label>
-            <input
-              type="number"
-              id="victory-point"
-              name="victoryPoint"
-              value={formData.victoryPoint}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="label-wrapper">
-            <label htmlFor="defeat-point">Points par défaite</label>
-            <input
-              type="number"
-              id="defeat-point"
-              name="defeatPoint"
-              value={formData.defeatPoint}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="label-wrapper">
-            <label htmlFor="draw-point">Points en cas d{`'`}égalité</label>
-            <input
-              type="number"
-              id="draw-point"
-              name="drawPoint"
-              value={formData.drawPoint}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          {formConfig.map((field) => {
+            if (field.type === 'select') {
+              return (
+                <div key={field.id} className="label-wrapper">
+                  <label htmlFor={field.id}>{field.title}</label>
+                  <select
+                    id={field.id}
+                    name={field.name}
+                    value={field.value}
+                    onChange={handleChange}
+                    required
+                  >
+                    {field.options.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              );
+            } else {
+              return (
+                <div key={field.id} className="label-wrapper">
+                  <label htmlFor={field.id}>{field.title}</label>
+                  <input
+                    id={field.id}
+                    name={field.name}
+                    type={field.type}
+                    value={field.value}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              );
+            }
+          })}
+          <Button buttonText="Validez" style="light" type="submit"></Button>
         </form>
       </BlueCard>
     </div>

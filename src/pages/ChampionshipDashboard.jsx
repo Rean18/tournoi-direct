@@ -12,7 +12,7 @@ export function ChampionshipDashboard() {
     return 'Type de compétition non déterminée';
   };
   // État pour déterminer quel composant afficher
-  const [printComposant, setPrintComposant] = useState(null);
+  const [printComposant, setPrintComposant] = useState('equipes');
 
   // Dictionnaire des composants
   const composants = {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import '../styles/TeamsDashboard/TeamsDashboard.css';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export function TeamsDashboard() {
   const formData = localStorage.getItem('formData');
@@ -14,7 +15,13 @@ export function TeamsDashboard() {
         teams.push(existingTeam);
         console.log('Equipe déjà existantes', teams);
       } else {
-        teams.push({ id: i, name: `Équipe ${i}` });
+        teams.push({
+          id: i,
+          name: `Équipe ${i}`,
+          goalsScored: [],
+          goalsConceded: [],
+          point: [],
+        });
       }
     }
     console.log('tableau des équipes', teams);
@@ -22,6 +29,8 @@ export function TeamsDashboard() {
   };
 
   const [teams, setTeams] = useState([]);
+  const [displayedTeams, setDisplayedTeams] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     const savedTeams = localStorage.getItem('teamsData');
@@ -44,6 +53,22 @@ export function TeamsDashboard() {
     }
   }, [numberOfTeams]);
 
+  useEffect(() => {
+    setDisplayedTeams(teams.slice(0, 4));
+  }, [teams]);
+
+  const fetchMoreData = () => {
+    if (displayedTeams.length >= teams.length) {
+      setHasMore(false);
+      return;
+    }
+    const nextTeams = teams.slice(
+      displayedTeams.length,
+      displayedTeams.length + 6
+    );
+    setDisplayedTeams((prevTeams) => [...prevTeams, ...nextTeams]);
+  };
+
   const handleTeamName = (id, newName) => {
     const updateTeams = teams.map((team) =>
       team.id === id ? { ...team, name: newName } : team
@@ -56,23 +81,36 @@ export function TeamsDashboard() {
   return (
     <div className="teams-dashboard">
       <h1>Modifier les équipes</h1>
-      <ul id="teams-list">
-        {teams.map((team) => {
-          return (
-            <li key={team.id}>
-              <input
-                type="text"
-                value={team.name}
-                name={`team-${team.id}`}
-                onChange={(e) => handleTeamName(team.id, e.target.value)}
-              />
-              <div className="image-container">
-                <img src="/logo_modifier.png" alt="logo de modification" />
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      <InfiniteScroll
+        dataLength={displayedTeams.length}
+        next={fetchMoreData}
+        hasMore={hasMore}
+        loader={<h4>Chargement...</h4>}
+        endMessage={
+          <p style={{ textAlign: 'center' }}>
+            <b>Toutes les équipes sont affichées !</b>
+          </p>
+        }
+        height={400}
+      >
+        <ul id="teams-list">
+          {teams.map((team) => {
+            return (
+              <li key={team.id}>
+                <input
+                  type="text"
+                  value={team.name}
+                  name={`team-${team.id}`}
+                  onChange={(e) => handleTeamName(team.id, e.target.value)}
+                />
+                <div className="image-container">
+                  <img src="/logo_modifier.png" alt="logo de modification" />
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </InfiniteScroll>
     </div>
   );
 }
