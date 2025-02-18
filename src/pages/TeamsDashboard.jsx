@@ -19,8 +19,11 @@ export function TeamsDashboard() {
           id: i,
           name: `Équipe ${i}`,
           goalsScored: [],
+          totalGoalsScored: Number(),
           goalsConceded: [],
-          point: [],
+          totalGoalsConceded: Number(),
+          points: [],
+          totalPoints: Number(),
         });
       }
     }

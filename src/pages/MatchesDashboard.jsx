@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { roundRobin } from '../utils/matchLogic.js';
 
 export function MatchesDashboard() {
@@ -8,8 +8,10 @@ export function MatchesDashboard() {
   const rulesJSON = localStorage.getItem('formData');
   const rules = JSON.parse(rulesJSON || '{}');
   const twoLeggedTie = rules.twoLeggedTie === 'oui';
-  console.log('valeur de twoleggedtie', twoLeggedTie);
   const numberOfSimultMatche = rules.numberOfSimultMatche;
+  const victoryPoints = Number(rules.victoryPoint);
+  const defeatPoints = Number(rules.defeatPoint);
+  const drawPoints = Number(rules.drawPoint);
 
   const [teamsStats, setTeamsStats] = useState(parsedTeams);
   const [inputValues, setInputValues] = useState(() => {
@@ -28,21 +30,77 @@ export function MatchesDashboard() {
       localStorage.setItem('inputValues', JSON.stringify(newValues));
       return newValues;
     });
-
-    const teamName = e.target.name;
-    const score = Number(e.target.value);
-    const updateTeamsStats = teamsStats.map((team) => {
-      if (team.name === teamName) {
-        return {
-          ...team,
-          goalsScored: [...team.goalsScored, score],
-        };
-      }
-      return team;
-    });
-    setTeamsStats(updateTeamsStats);
-    localStorage.setItem('teamsData', JSON.stringify(updateTeamsStats));
   };
+
+  // Mise à jours des Stats
+  useEffect(() => {
+    const updatedStats = teamsStats.map((team) => {
+      let newGoalsScored = { ...(team.goalsScored || {}) };
+      let newGoalsConceded = { ...(team.goalsConceded || {}) };
+      let newPoints = { ...(team.points || {}) };
+      console.log('POINTS AVANTS', newPoints);
+
+      matches.forEach((match, index) => {
+        if (match.includes(team.name)) {
+          const teamInputId = `${index}-${team.name}`;
+          const opponent = match[0] === team.name ? match[1] : match[0];
+          const opponentInputId = `${index}-${opponent}`;
+
+          if (inputValues[teamInputId] !== undefined) {
+            newGoalsScored[teamInputId] = Number(inputValues[teamInputId]);
+          }
+          if (inputValues[opponentInputId] !== undefined) {
+            newGoalsConceded[teamInputId] = Number(
+              inputValues[opponentInputId]
+            );
+          }
+
+          if (newGoalsScored[teamInputId] < newGoalsConceded[teamInputId]) {
+            newPoints[teamInputId] = defeatPoints;
+          }
+          if (newGoalsScored[teamInputId] === newGoalsConceded[teamInputId]) {
+            newPoints[teamInputId] = drawPoints;
+          }
+
+          if (newGoalsScored[teamInputId] > newGoalsConceded[teamInputId]) {
+            newPoints[teamInputId] = victoryPoints;
+          }
+        }
+      });
+      const totalGoalsScored = Object.values(team.goalsScored).reduce(
+        (acc, curr) => acc + curr,
+        0
+      );
+      const totalGoalsConceded = Object.values(team.goalsConceded).reduce(
+        (acc, curr) => acc + curr,
+        0
+      );
+      const totalPoints = Object.values(team.points).reduce(
+        (acc, curr) => acc + curr,
+        0
+      );
+
+      return {
+        ...team,
+        goalsScored: newGoalsScored,
+        totalGoalsScored: totalGoalsScored,
+        goalsConceded: newGoalsConceded,
+        totalGoalsConceded: totalGoalsConceded,
+        points: newPoints,
+        totalPoints: totalPoints,
+      };
+    });
+
+    setTeamsStats(updatedStats);
+    localStorage.setItem('teamsData', JSON.stringify(updatedStats));
+  }, [
+    inputValues,
+    matches,
+    defeatPoints,
+    drawPoints,
+    victoryPoints,
+    teamsStats,
+  ]);
 
   return (
     <div>

@@ -10,7 +10,6 @@ export function roundRobin(teamsList, twoLeggedTie) {
   } else {
     nRotation = nTeams - 1;
   }
-  console.log('nombre de tour :', nRotation);
 
   const fixedTeam = teamsList[0]; //
   const rotatingTeams = teamsList.slice(1);
@@ -32,13 +31,11 @@ export function roundRobin(teamsList, twoLeggedTie) {
     allMatches.push(dayMatches);
     rotatingTeams.unshift(rotatingTeams.pop());
   }
-  console.log('liste des matches par tour', allMatches);
 
   const matchesList = allMatches.flat();
   const allMatchesWithoutBye = matchesList.filter(
     (match) => !match.includes('bye')
   );
-  console.log('liste des matches applatie', matchesList);
 
   return allMatchesWithoutBye;
 }
