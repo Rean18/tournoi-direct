@@ -67,7 +67,11 @@ export function MatchesDashboard() {
     const updatedStats = teamsStats.map((team) => {
       let newGoalsScored = { ...(team.goalsScored || {}) };
       let newGoalsConceded = { ...(team.goalsConceded || {}) };
+      let newVictory = { ...(team.victories || {}) };
+      let newDefeat = { ...(team.defeats || {}) };
+      let newDraw = { ...(team.draws || {}) };
       let newPoints = { ...(team.points || {}) };
+      let newMatchPlayed = { ...(team.matchPlayed || {}) };
 
       chunks.forEach((chunk, chunkIndex) => {
         chunk.forEach((match, matchIndex) => {
@@ -75,7 +79,17 @@ export function MatchesDashboard() {
             const teamInputId = `${chunkIndex}-${matchIndex}-${team.name}`;
             const opponent = match[0] === team.name ? match[1] : match[0];
             const opponentInputId = `${chunkIndex}-${matchIndex}-${opponent}`;
+            // Matches joués
+            if (
+              newMatchPlayed[teamInputId] === undefined ||
+              inputValues[teamInputId] === ''
+            ) {
+              newMatchPlayed[teamInputId] = 0;
+            } else {
+              newMatchPlayed[teamInputId] = 1;
+            }
 
+            // Buts marqués et encaissés
             if (inputValues[teamInputId] !== undefined) {
               newGoalsScored[teamInputId] = Number(inputValues[teamInputId]);
             }
@@ -84,6 +98,7 @@ export function MatchesDashboard() {
                 inputValues[opponentInputId]
               );
             }
+            // Gestion d'un score vide
             if (
               inputValues[teamInputId] === undefined ||
               inputValues[teamInputId] === ''
@@ -94,32 +109,34 @@ export function MatchesDashboard() {
             } else {
               if (newGoalsScored[teamInputId] < newGoalsConceded[teamInputId]) {
                 newPoints[teamInputId] = defeatPoints;
+                newDefeat[teamInputId] = 1;
               }
               if (
                 newGoalsScored[teamInputId] === newGoalsConceded[teamInputId]
               ) {
                 newPoints[teamInputId] = drawPoints;
+                newDraw[teamInputId] = 1;
               }
 
               if (newGoalsScored[teamInputId] > newGoalsConceded[teamInputId]) {
                 newPoints[teamInputId] = victoryPoints;
+                newVictory[teamInputId] = 1;
               }
             }
           }
         });
       });
-      const totalGoalsScored = Object.values(team.goalsScored).reduce(
-        (acc, curr) => acc + curr,
-        0
-      );
-      const totalGoalsConceded = Object.values(team.goalsConceded).reduce(
-        (acc, curr) => acc + curr,
-        0
-      );
-      const totalPoints = Object.values(team.points).reduce(
-        (acc, curr) => acc + curr,
-        0
-      );
+
+      const sumValues = (obj) =>
+        Object.values(obj).reduce((acc, curr) => acc + curr, 0);
+
+      const totalGoalsScored = sumValues(team.goalsScored);
+      const totalGoalsConceded = sumValues(team.goalsConceded);
+      const totalPoints = sumValues(team.points);
+      const totalMatchPlayed = sumValues(team.matchPlayed);
+      const totalVictories = sumValues(team.victories);
+      const totalDefeats = sumValues(team.defeats);
+      const totalDraws = sumValues(team.draws);
 
       return {
         ...team,
@@ -129,6 +146,14 @@ export function MatchesDashboard() {
         totalGoalsConceded: totalGoalsConceded,
         points: newPoints,
         totalPoints: totalPoints,
+        matchPlayed: newMatchPlayed,
+        totalMatchPlayed: totalMatchPlayed,
+        victories: newVictory,
+        totalVictories: totalVictories,
+        defeats: newDefeat,
+        totalDefeats: totalDefeats,
+        draws: newDraw,
+        totalDraws: totalDraws,
       };
     });
 

@@ -23,6 +23,14 @@ export function TeamsDashboard() {
           goalsConceded: [],
           totalGoalsConceded: Number(),
           points: [],
+          victories: [],
+          totalVictories: Number(),
+          defeats: [],
+          totalDefeats: Number(),
+          draws: [],
+          totalDraws: Number(),
+          matchPlayed: [],
+          totalMatchPlayed: Number(),
           totalPoints: Number(),
         });
       }
