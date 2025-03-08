@@ -1,5 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { roundRobin } from '../utils/matchLogic.js';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import '../styles/MatchesDashboard/MatchesDashboard.css';
 
 export function MatchesDashboard() {
   const teamsData = localStorage.getItem('teamsData');
@@ -19,6 +21,8 @@ export function MatchesDashboard() {
     return storedInputs ? JSON.parse(storedInputs) : {};
   });
   const [chunks, setChunks] = useState([]);
+  const [displayedMatches, setDisplayedMatches] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
 
   const matches = useMemo(
     () => roundRobin(teamsList, twoLeggedTie),
@@ -81,7 +85,7 @@ export function MatchesDashboard() {
             const opponentInputId = `${chunkIndex}-${matchIndex}-${opponent}`;
             // Matches joués
             if (
-              newMatchPlayed[teamInputId] === undefined ||
+              inputValues[teamInputId] === undefined ||
               inputValues[teamInputId] === ''
             ) {
               newMatchPlayed[teamInputId] = 0;
@@ -162,36 +166,63 @@ export function MatchesDashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValues, victoryPoints, defeatPoints, drawPoints, teamsData]);
 
-  return (
-    <div>
-      <h2>Liste de tous les matchs</h2>
+  //Scroll des matches
+  useEffect(() => {
+    setDisplayedMatches(chunks.slice(0, 2));
+  }, [chunks]);
+  const fetchMoreData = () => {
+    if (displayedMatches.length >= chunks.length) {
+      setHasMore(false);
+      return;
+    }
+    const nextMatches = chunks.slice(
+      displayedMatches.length,
+      displayedMatches.length + 2
+    );
+    setDisplayedMatches((prevMatches) => [...prevMatches, ...nextMatches]);
+  };
 
-      {chunks.map((chunk, chunkIndex) => (
-        <div key={chunkIndex}>
-          <h2>Tour {chunkIndex + 1}</h2>
-          {chunk.map((team, matchIndex) => (
-            <div key={matchIndex}>
-              {team[0]}
-              <input
-                id={`${chunkIndex}-${matchIndex}-${team[0]}`}
-                name={team[0][0]}
-                type="number"
-                onChange={handleStats}
-                value={inputValues[`${chunkIndex}-${matchIndex}-${team[0]}`]}
-              />{' '}
-              -{' '}
-              <input
-                id={`${chunkIndex}-${matchIndex}-${team[1]}`}
-                name={team[1]}
-                type="number"
-                onChange={handleStats}
-                value={inputValues[`${chunkIndex}-${matchIndex}-${team[1]}`]}
-              />
-              {team[1]}
-            </div>
-          ))}
-        </div>
-      ))}
+  return (
+    <div className="matches-container">
+      <InfiniteScroll
+        dataLength={displayedMatches.length}
+        next={fetchMoreData}
+        hasMore={hasMore}
+        loader={<h4>Chargement...</h4>}
+        endMessage={
+          <p style={{ textAlign: 'center', marginTop: ' 2vh' }}>
+            <b>Toutes les matches sont affichées !</b>
+          </p>
+        }
+        height={400}
+      >
+        {chunks.map((chunk, chunkIndex) => (
+          <div id="matches-round" key={chunkIndex}>
+            <h3>Tour {chunkIndex + 1}</h3>
+            {chunk.map((team, matchIndex) => (
+              <div className="input-row" key={matchIndex}>
+                <label>{team[0]}</label>
+                <input
+                  id={`${chunkIndex}-${matchIndex}-${team[0]}`}
+                  name={team[0][0]}
+                  type="number"
+                  onChange={handleStats}
+                  value={inputValues[`${chunkIndex}-${matchIndex}-${team[0]}`]}
+                />{' '}
+                <p>—</p>
+                <input
+                  id={`${chunkIndex}-${matchIndex}-${team[1]}`}
+                  name={team[1]}
+                  type="number"
+                  onChange={handleStats}
+                  value={inputValues[`${chunkIndex}-${matchIndex}-${team[1]}`]}
+                />
+                <label>{team[1]}</label>
+              </div>
+            ))}
+          </div>
+        ))}
+      </InfiniteScroll>
     </div>
   );
 }

@@ -40,12 +40,12 @@ body {
 }
 
 main {
-  height: 87vh;
+  height: 84vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 5vh;
+  row-gap: 0vh;
 }
 
 h1,
@@ -56,6 +56,13 @@ h5 {
   font-family: var(--font-family);
   font-weight: var(--large-font-weight);
   margin-bottom: var(--spacing-small);
+}
+
+h2 {
+  font-size: 1.8em;
+}
+h3 {
+  font-size: 1.6em;
 }
 
 a {

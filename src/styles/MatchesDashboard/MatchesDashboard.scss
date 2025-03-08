@@ -1,0 +1,49 @@
+.matches-container {
+  width: 100%;
+}
+
+#matches-round {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 2vh;
+  h3 {
+    text-align: center;
+  }
+  .input-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  label,
+  input,
+  p {
+    font-weight: var(--large-font-weight);
+  }
+  label {
+    height: 4vh;
+    width: 13vw;
+    font-size: 18px;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    border-radius: 5px;
+    text-align: center;
+    line-height: 4vh;
+  }
+  p {
+    font-size: 18px;
+    color: var(--color-primary);
+    line-height: 4vh;
+  }
+  input {
+    width: 6vw;
+    height: 4vh;
+    margin-bottom: 2vh;
+    border: solid 2px;
+    border-color: var(--color-primary);
+    border-radius: 5px;
+    background-color: white !important;
+    color: var(--color-primary);
+    text-align: center;
+    font-size: 16px;
+  }
+}

@@ -91,14 +91,13 @@ export function TeamsDashboard() {
 
   return (
     <div className="teams-dashboard">
-      <h1>Modifier les équipes</h1>
       <InfiniteScroll
         dataLength={displayedTeams.length}
         next={fetchMoreData}
         hasMore={hasMore}
         loader={<h4>Chargement...</h4>}
         endMessage={
-          <p style={{ textAlign: 'center' }}>
+          <p style={{ textAlign: 'center', marginTop: ' 2vh' }}>
             <b>Toutes les équipes sont affichées !</b>
           </p>
         }

@@ -1,6 +1,7 @@
 .blue-card {
   width: 60vw;
-  max-height: 70vh;
+  max-height: 72vh;
+  padding-bottom: 3vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,6 +11,8 @@
   border-radius: 20px;
 
   h3 {
+    max-width: 40vh;
+    text-align: center;
     margin-top: 2rem;
     font-size: 1.7em;
     color: var(--color-secondary);

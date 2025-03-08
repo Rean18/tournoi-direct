@@ -35,7 +35,7 @@ export function ChampionshipRules() {
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem('formData', JSON.stringify(formData));
-    navigate('matches');
+    navigate('../matches');
     console.log('Data :', formData);
   };
 
@@ -43,7 +43,7 @@ export function ChampionshipRules() {
     {
       buttonText: '',
       route: '',
-      style: '',
+      style: 'hidden',
       onClick: '',
       type: '',
     },
@@ -99,7 +99,7 @@ export function ChampionshipRules() {
   ];
 
   return (
-    <div>
+    <div className="main-content">
       <BlueCard cardTitle="Configurez le championnat" buttons={buttonsConfig}>
         <form id="options" onSubmit={handleSubmit}>
           {formConfig.map((field) => {

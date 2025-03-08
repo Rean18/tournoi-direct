@@ -1,0 +1,36 @@
+.table-container {
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-color: var(--color-primary);
+}
+thead {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  border-collapse: collapse;
+}
+
+tr,
+th,
+td {
+  padding: 1vh 2vw;
+  font-weight: var(--large-font-weight);
+  text-align: center;
+}
+tbody tr:nth-child(even) {
+  background-color: var(--color-secondary);
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #dee4f9;
+}
+
+caption {
+  display: block;
+  margin-top: 2vh;
+}

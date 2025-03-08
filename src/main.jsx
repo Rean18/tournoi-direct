@@ -9,6 +9,7 @@ import { ChampionshipRules } from './pages/ChampionshipRules.jsx';
 
 import { ChampionshipDashboard } from './pages/ChampionshipDashboard.jsx';
 import './index.css';
+import { ChampionshipDataChoice } from './pages/ChampionshipDataChoice.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
+            element: <ChampionshipDataChoice />,
+          },
+
+          {
+            path: 'rules',
             element: <ChampionshipRules />,
           },
           {

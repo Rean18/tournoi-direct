@@ -23,30 +23,30 @@ export function CompetitionType() {
   ];
 
   return (
-    <div className="competition-page">
-      <h1>Tournoi Direct 🏆</h1>
-
-      <BlueCard
-        cardTitle="Choisissez le type de tournoi"
-        buttons={buttonConfig}
-      />
-      <div className="rules-container">
-        <div className="rules">
-          <h2>Championnats : </h2>
-          <p>
-            Toutes les équipes s{`'`}affrontent sur des matches aller ou
-            aller-retour
-          </p>
+    <div className="main-content">
+      <div className="competition-page">
+        <BlueCard
+          cardTitle="Choisissez le type de tournoi"
+          buttons={buttonConfig}
+        />
+        <div className="rules-container">
+          <div className="rules">
+            <h2>Championnats : </h2>
+            <p>
+              Toutes les équipes s{`'`}affrontent sur des matches aller ou
+              aller-retour
+            </p>
+          </div>
+          <div className="rules">
+            <h2>Coupe :</h2>
+            <p>
+              Chaque équipe joue des matches à élimination direct avec l{`'`}
+              objectif d{`'`}arriver et gagner la finale
+            </p>
+          </div>
         </div>
-        <div className="rules">
-          <h2>Coupe :</h2>
-          <p>
-            Chaque équipe joue des matches à élimination direct avec l{`'`}
-            objectif d{`'`}arriver et gagner la finale
-          </p>
-        </div>
+        <Outlet />
       </div>
-      <Outlet />
     </div>
   );
 }
