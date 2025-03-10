@@ -1,25 +1,28 @@
 .table-container {
+  margin: 0 3vw;
+  max-height: 50vh;
   border-radius: 15px;
   overflow: hidden;
   border: 2px solid;
 }
 
 table {
+  margin: 0;
   width: 100%;
   border-collapse: collapse;
   border-color: var(--color-primary);
+  table-layout: auto;
 }
 
 thead {
   background-color: var(--color-primary);
   color: var(--color-secondary);
-  border-collapse: collapse;
 }
 
-tr,
 th,
 td {
-  padding: 1vh 2vw;
+  padding: 1em;
+  min-width: auto;
   font-weight: var(--large-font-weight);
   text-align: center;
 }
@@ -35,4 +38,33 @@ tbody tr:nth-child(odd) {
 caption {
   display: block;
   margin-top: 2vh;
+}
+
+/* Mobile 375px - 768px*/
+@media (max-width: 768px) {
+  .table-container {
+    margin: 0 3vw;
+  }
+  th,
+  td {
+    padding: 0.7em;
+    font-weight: var(--large-font-weight);
+    text-align: center;
+    border: var(--color-primary) solid 1px;
+    font-size: 0.9em;
+  }
+  th:nth-child(2),
+  td:nth-child(2) {
+    padding: 0 3vw;
+  }
+  th:nth-child(7),
+  td:nth-child(7),
+  th:nth-child(8),
+  td:nth-child(8) {
+    display: none; /* Cache les colonnes 5 et 6 */
+  }
+  caption {
+    font-size: 0.8em;
+    margin: 1em;
+  }
 }/*# sourceMappingURL=RankingBoard.css.map */

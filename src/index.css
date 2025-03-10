@@ -45,7 +45,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 0vh;
 }
 
 h1,
@@ -62,7 +61,7 @@ h2 {
   font-size: 1.8em;
 }
 h3 {
-  font-size: 1.6em;
+  font-size: 1.7em;
 }
 
 a {
@@ -71,4 +70,20 @@ a {
 
 #pages-logo {
   width: 50px;
+}
+
+/* Mobile 375px - 768px*/
+@media (max-width: 768px) {
+  main {
+    height: 82vh;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  h2 {
+    font-size: 1.4em;
+  }
+  h3 {
+    font-size: 1.3em;
+  }
 }

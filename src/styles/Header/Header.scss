@@ -16,3 +16,23 @@ header {
 #return {
   max-height: 5vh;
 }
+
+/* Mobile 375px - 768px*/
+@media (max-width: 768px) {
+  header {
+    height: 10vh;
+
+    padding: 1.5vh 5vw;
+
+    button {
+      border: none;
+      background-color: transparent;
+    }
+  }
+  #logo-pages {
+    max-height: 7vh;
+  }
+  #return {
+    max-height: 7vh;
+  }
+}

@@ -50,4 +50,32 @@
 }
 #teams-list li img {
   height: 20px;
+}
+
+/* Mobile 375px - 768px*/
+@media (max-width: 768px) {
+  #teams-list {
+    max-width: 70vw;
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    row-gap: 3.5vh;
+  }
+  #teams-list li {
+    width: 90%;
+    max-width: 70vw;
+    padding: 2em 0;
+  }
+  #teams-list li input {
+    padding-left: 1.8em;
+    font-size: 1.3em;
+  }
+  #teams-list li .image-container {
+    right: 1.5em;
+  }
+  #teams-list li img {
+    height: 3vh;
+  }
 }/*# sourceMappingURL=TeamsDashboard.css.map */

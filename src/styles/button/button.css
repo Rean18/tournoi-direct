@@ -28,4 +28,15 @@
   visibility: hidden;
   height: 0;
   margin: 0;
+}
+
+/* Mobile 375px - 768px*/
+@media (max-width: 768px) {
+  .button-container button {
+    font-size: 1.1em;
+  }
+  .button-container .light {
+    width: 50vw;
+    height: 6vh;
+  }
 }/*# sourceMappingURL=button.css.map */

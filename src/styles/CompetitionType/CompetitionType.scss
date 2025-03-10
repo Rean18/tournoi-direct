@@ -43,3 +43,50 @@
     padding-left: 1em;
   }
 }
+
+/* Mobile 375px - 768px*/
+@media (max-width: 768px) {
+  .competition-page {
+    height: 87vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 4vh;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .rules-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 6vh;
+    padding: 3vh 2vw;
+  }
+
+  .rules {
+    height: 5vh;
+    max-width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+      width: 60vw;
+      font-size: 1em;
+      line-height: 1.1em;
+    }
+    p {
+      font-size: 0.8em;
+      line-height: 1.5em;
+      padding-left: 1.4em;
+    }
+  }
+}

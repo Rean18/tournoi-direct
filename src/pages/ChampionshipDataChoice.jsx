@@ -17,12 +17,12 @@ export function ChampionshipDataChoice() {
   };
   const buttonConfig = [
     {
-      buttonText: 'Continuer le Championnat',
+      buttonText: 'Continuer',
       route: 'rules',
       style: 'light',
     },
     {
-      buttonText: 'Nouveau Championnat',
+      buttonText: 'Nouveau',
       route: 'rules',
       style: 'light',
       onClick: () => deleteData(['teamsData', 'inputValues']),

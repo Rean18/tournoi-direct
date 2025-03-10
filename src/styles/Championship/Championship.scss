@@ -68,3 +68,31 @@
 .composant-container {
   width: 100%;
 }
+
+/* Mobile 375px - 768px*/
+@media (max-width: 768px) {
+  #options {
+    label {
+      font-size: 1em;
+      max-width: 65%;
+    }
+    input,
+    select {
+      height: 2rem;
+      width: 25%;
+      font-size: 0.9em;
+    }
+  }
+
+  #championship-menu {
+    button {
+      width: 27vw;
+      height: 6vh;
+      font-size: 0.9em;
+    }
+  }
+
+  .composant-container {
+    width: 100%;
+  }
+}

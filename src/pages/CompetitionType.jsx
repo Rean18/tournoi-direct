@@ -41,7 +41,7 @@ export function CompetitionType() {
             <h2>Coupe :</h2>
             <p>
               Chaque équipe joue des matches à élimination direct avec l{`'`}
-              objectif d{`'`}arriver et gagner la finale
+              objectif de gagner la finale
             </p>
           </div>
         </div>

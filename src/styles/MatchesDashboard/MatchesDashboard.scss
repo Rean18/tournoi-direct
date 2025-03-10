@@ -22,7 +22,7 @@
   label {
     height: 4vh;
     width: 13vw;
-    font-size: 18px;
+    font-size: 1.2em;
     background-color: var(--color-primary);
     color: var(--color-secondary);
     border-radius: 5px;
@@ -30,7 +30,7 @@
     line-height: 4vh;
   }
   p {
-    font-size: 18px;
+    font-size: 1.2em;
     color: var(--color-primary);
     line-height: 4vh;
   }
@@ -44,6 +44,24 @@
     background-color: white !important;
     color: var(--color-primary);
     text-align: center;
-    font-size: 16px;
+    font-size: 1em;
+  }
+}
+
+/* Mobile 375px - 768px*/
+@media (max-width: 768px) {
+  #matches-round {
+    label {
+      width: 23vw;
+      font-size: 1em;
+    }
+
+    .input-row {
+      justify-content: space-around;
+    }
+    input {
+      width: 12vw;
+      font-size: 1em;
+    }
   }
 }

@@ -20,4 +20,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+/* Mobile 375px */
+@media (min-width: 375px) {
+  #app-title {
+    display: none;
+  }
 }/*# sourceMappingURL=Layout.css.map */

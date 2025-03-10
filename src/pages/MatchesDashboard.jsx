@@ -110,6 +110,9 @@ export function MatchesDashboard() {
               newPoints[teamInputId] = 0;
               newGoalsConceded[teamInputId] = 0;
               newGoalsScored[teamInputId] = 0;
+              newVictory[teamInputId] = 0;
+              newDefeat[teamInputId] = 0;
+              newDraw[teamInputId] = 0;
             } else {
               if (newGoalsScored[teamInputId] < newGoalsConceded[teamInputId]) {
                 newPoints[teamInputId] = defeatPoints;

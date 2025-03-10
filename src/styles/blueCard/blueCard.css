@@ -14,6 +14,14 @@
   max-width: 40vh;
   text-align: center;
   margin-top: 2rem;
-  font-size: 1.7em;
   color: var(--color-secondary);
+}
+
+/* Mobile 375px - 768px*/
+@media (max-width: 768px) {
+  .blue-card {
+    width: 75vw;
+    justify-content: space-between;
+    row-gap: 1vh;
+  }
 }/*# sourceMappingURL=blueCard.css.map */
