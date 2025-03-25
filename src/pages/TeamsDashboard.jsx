@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
 import '../styles/TeamsDashboard/TeamsDashboard.css';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import DOMpurify from 'dompurify';
 
 export function TeamsDashboard() {
   const formData = localStorage.getItem('formData');
   const parsedFormData = JSON.parse(formData);
   const numberOfTeams = parseInt(parsedFormData.numberOfTeams);
+  const sanitizeInput = (input) => {
+    return DOMpurify.sanitize(input);
+  };
+
   // Créer un tableau des équipes en fonction de leur nombre
   const organiseTeams = (n, existingTeams = []) => {
     const teams = [];
@@ -81,8 +86,9 @@ export function TeamsDashboard() {
   };
 
   const handleTeamName = (id, newName) => {
+    const sanitizedValue = sanitizeInput(newName);
     const updateTeams = teams.map((team) =>
-      team.id === id ? { ...team, name: newName } : team
+      team.id === id ? { ...team, name: sanitizedValue } : team
     );
     setTeams(updateTeams);
     localStorage.setItem('teamsData', JSON.stringify(updateTeams));
@@ -90,18 +96,22 @@ export function TeamsDashboard() {
   };
 
   return (
-    <div className="teams-dashboard">
+    <div
+      id="scrollableTeamsContainer"
+      className="teams-dashboard"
+      style={{ height: '50vh', overflow: 'auto' }}
+    >
       <InfiniteScroll
         dataLength={displayedTeams.length}
         next={fetchMoreData}
         hasMore={hasMore}
+        scrollableTarget="scrollableTeamsContainer"
         loader={<h4>Chargement...</h4>}
         endMessage={
           <p style={{ textAlign: 'center', marginTop: ' 2vh' }}>
             <b>Toutes les équipes sont affichées !</b>
           </p>
         }
-        height={400}
       >
         <ul id="teams-list">
           {teams.map((team) => {

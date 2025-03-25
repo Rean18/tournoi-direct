@@ -1,8 +1,8 @@
-.competition-page {
-  height: 87vh;
+.rules-page {
+  margin-top: 8vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   row-gap: 4vh;
 }
@@ -28,7 +28,7 @@
   align-items: first baseline;
   padding: 1vh 0;
 }
-.rules h2 {
+.rules h4 {
   width: auto;
   display: inline;
   white-space: nowrap;
@@ -43,13 +43,13 @@
   padding-left: 1em;
 }
 
-/* Mobile 375px - 768px*/
-@media (max-width: 768px) {
-  .competition-page {
-    height: 87vh;
+/* Mobile 375px - 425px*/
+@media (max-width: 425px) {
+  .rules-page {
+    margin-top: 5vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     row-gap: 4vh;
   }
@@ -74,7 +74,7 @@
     justify-content: center;
     align-items: center;
   }
-  .rules h2 {
+  .rules h4 {
     width: 60vw;
     font-size: 1em;
     line-height: 1.1em;

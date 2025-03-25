@@ -8,7 +8,6 @@ export function Layout() {
     <div>
       <Header />
       <main>
-        <h1 id="app-title">Tournoi Direct 🏆</h1>
         <Outlet />
       </main>
       <Footer />

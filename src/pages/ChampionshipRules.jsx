@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { BlueCard } from '../components/common/blueCard';
 import '../styles/Championship/Championship.css';
 import { Button } from '../components/common/button';
+import DOMpurify from 'dompurify';
 
 export function ChampionshipRules() {
   const navigate = useNavigate();
@@ -14,6 +15,10 @@ export function ChampionshipRules() {
     drawPoint: '',
     simultMatches: '',
   });
+  const [errorFormMessage, setErrorFormMessage] = useState('error-hidden');
+  const sanitizeInput = (input) => {
+    return DOMpurify.sanitize(input);
+  };
 
   useEffect(() => {
     const savedFormData = localStorage.getItem('formData');
@@ -23,9 +28,19 @@ export function ChampionshipRules() {
   }, []);
 
   const handleChange = (e) => {
+    if (e.target.type === 'number') {
+      const numberValue = Number(e.target.value);
+      if (numberValue < 0 || !Number.isInteger(numberValue)) {
+        console.log('erreur le nombre doit être un entier positif');
+        setErrorFormMessage('error-visible');
+        return;
+      }
+    }
+    const rawValue = e.target.value;
+    const sanitizedValue = sanitizeInput(rawValue);
     const newFormData = {
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: sanitizedValue,
     };
     setFormData(newFormData);
     localStorage.setItem('formData', JSON.stringify(newFormData));
@@ -126,6 +141,7 @@ export function ChampionshipRules() {
               return (
                 <div key={field.id} className="label-wrapper">
                   <label htmlFor={field.id}>{field.title}</label>
+
                   <input
                     id={field.id}
                     name={field.name}
@@ -138,6 +154,11 @@ export function ChampionshipRules() {
               );
             }
           })}
+          <div className="error-container">
+            <p className={errorFormMessage}>
+              Erreur, le nombre doit être un entier positif
+            </p>
+          </div>
           <Button buttonText="Validez" style="light" type="submit"></Button>
         </form>
       </BlueCard>

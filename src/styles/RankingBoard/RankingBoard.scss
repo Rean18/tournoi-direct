@@ -1,6 +1,6 @@
 .table-container {
   margin: 0 3vw;
-  max-height: 50vh;
+  max-height: 47vh;
   border-radius: 15px;
   overflow: hidden;
   border: 2px solid;
@@ -36,6 +36,11 @@ tbody tr:nth-child(odd) {
 caption {
   display: block;
   margin-top: 2vh;
+
+  span {
+    font-weight: bold;
+    text-decoration: underline;
+  }
 }
 
 /* Mobile 375px - 768px*/

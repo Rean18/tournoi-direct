@@ -92,9 +92,11 @@ export function RankingBoard() {
         </InfiniteScroll>
       </div>
       <caption>
-        Mj : Matches joués / V : victoire / D : Défaite / N : Nul <br />
-        Bm : Buts marqués / Be : Buts encaissés / Diff : Différence de buts /
-        Pts : Points
+        <span>Mj</span> = Matches joués / <span>V</span> = victoire /{' '}
+        <span>D</span> = Défaite / <span>N</span> = Nul <br />
+        <span>Bm</span> : Buts marqués / <span>Be</span> : Buts encaissés /{' '}
+        <span>Diff</span> : Différence de buts <br />
+        <span>Pts</span> : Points
       </caption>
     </div>
   );

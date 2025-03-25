@@ -24,21 +24,21 @@ export function CompetitionType() {
 
   return (
     <div className="main-content">
-      <div className="competition-page">
+      <div className="rules-page">
         <BlueCard
           cardTitle="Choisissez le type de tournoi"
           buttons={buttonConfig}
         />
         <div className="rules-container">
           <div className="rules">
-            <h2>Championnats : </h2>
+            <h4>Championnats : </h4>
             <p>
               Toutes les équipes s{`'`}affrontent sur des matches aller ou
               aller-retour
             </p>
           </div>
           <div className="rules">
-            <h2>Coupe :</h2>
+            <h4>Coupe :</h4>
             <p>
               Chaque équipe joue des matches à élimination direct avec l{`'`}
               objectif de gagner la finale

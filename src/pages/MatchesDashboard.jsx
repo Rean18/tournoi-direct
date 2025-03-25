@@ -186,18 +186,22 @@ export function MatchesDashboard() {
   };
 
   return (
-    <div className="matches-container">
+    <div
+      id="scrollableMatchesContainer"
+      className="matches-container"
+      style={{ height: '50vh', overflow: 'auto' }}
+    >
       <InfiniteScroll
         dataLength={displayedMatches.length}
         next={fetchMoreData}
         hasMore={hasMore}
+        scrollableTarget="scrollableMatchesContainer"
         loader={<h4>Chargement...</h4>}
         endMessage={
           <p style={{ textAlign: 'center', marginTop: ' 2vh' }}>
             <b>Toutes les matches sont affichées !</b>
           </p>
         }
-        height={400}
       >
         {chunks.map((chunk, chunkIndex) => (
           <div id="matches-round" key={chunkIndex}>

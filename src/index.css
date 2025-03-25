@@ -31,7 +31,7 @@
 }
 
 body {
-  max-width: 1250px;
+  max-width: 1400px;
   height: 100vh;
   margin: auto;
   font-family: var(--font-family);
@@ -43,7 +43,7 @@ main {
   height: 84vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 

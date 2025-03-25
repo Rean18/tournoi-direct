@@ -33,6 +33,24 @@
   column-gap: 0.5rem;
 }
 
+.error-visible {
+  position: absolute;
+  top: 5vh;
+  right: 5vw;
+  width: 30vw;
+  border-radius: 15px;
+  box-shadow: 0 0.5em 0.5em gray;
+  background-color: mistyrose;
+  color: var(--color-primary);
+  font-weight: bold;
+  padding: 1em;
+  text-align: center;
+}
+
+.error-hidden {
+  visibility: hidden;
+}
+
 #championship-menu {
   display: flex;
   flex-direction: column;
@@ -42,7 +60,7 @@
 
   button {
     background-color: var(--color-secondary);
-    width: 14vw;
+    width: 15vw;
     height: 5vh;
     font-weight: var(--large-font-weight);
     font-size: 16px;
@@ -69,8 +87,17 @@
   width: 100%;
 }
 
-/* Mobile 375px - 768px*/
-@media (max-width: 768px) {
+/* Mobile 425px - 1180px */
+@media (max-width: 1180px) {
+  #championship-menu {
+    button {
+      width: 21vw;
+    }
+  }
+}
+
+/* Mobile 375px - 425pxpx*/
+@media (max-width: 425px) {
   #options {
     label {
       font-size: 1em;

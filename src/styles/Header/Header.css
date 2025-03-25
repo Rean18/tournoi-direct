@@ -11,18 +11,18 @@ header button {
 }
 
 #logo-pages {
-  max-height: 5vh;
+  max-height: 7vh;
 }
 
 #return {
-  max-height: 5vh;
+  max-height: 6vh;
 }
 
 /* Mobile 375px - 768px*/
 @media (max-width: 768px) {
   header {
     height: 10vh;
-    padding: 1.5vh 5vw;
+    padding: 2vh 6vw;
   }
   header button {
     border: none;
