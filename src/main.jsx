@@ -10,6 +10,7 @@ import { ChampionshipRules } from './pages/ChampionshipRules.jsx';
 import { ChampionshipDashboard } from './pages/ChampionshipDashboard.jsx';
 import './index.css';
 import { ChampionshipDataChoice } from './pages/ChampionshipDataChoice.jsx';
+import { ConstructionPage } from './pages/ConstructionPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,16 @@ const router = createBrowserRouter([
           {
             path: 'matches',
             element: <ChampionshipDashboard />,
+          },
+        ],
+      },
+      {
+        path: 'cup',
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <ConstructionPage />,
           },
         ],
       },

@@ -1,0 +1,25 @@
+#construction-page-container {
+  height: 100%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 5vh;
+  text-align: center;
+}
+#construction-page-container h1 {
+  font-size: 2em;
+}
+#construction-page-container img {
+  width: 300px;
+}
+
+@media (max-width: 425px) {
+  #construction-page-container h1 {
+    font-size: 1.5em;
+  }
+  #construction-page-container img {
+    width: 200px;
+  }
+}/*# sourceMappingURL=ConstructionPage.css.map */

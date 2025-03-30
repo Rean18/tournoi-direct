@@ -10,7 +10,7 @@
 .button-group {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -19,6 +19,10 @@
   flex-direction: column;
   row-gap: 2vh;
   padding: 0 2vw;
+}
+
+h1 {
+  font-size: 3em;
 }
 
 .rules {

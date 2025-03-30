@@ -48,8 +48,26 @@
   }
 }
 
-/* Mobile 375px - 768px*/
+/* Mobile 425px - 768px */
 @media (max-width: 768px) {
+  #matches-round {
+    label {
+      width: 18vw;
+      font-size: 1em;
+    }
+
+    .input-row {
+      justify-content: space-around;
+    }
+    input {
+      width: 10vw;
+      font-size: 1em;
+    }
+  }
+}
+
+/* Mobile 375px - 768px*/
+@media (max-width: 425px) {
   #matches-round {
     label {
       width: 23vw;

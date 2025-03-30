@@ -1,74 +1,202 @@
+.ranking-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#table-header {
+  width: 655px;
+  border-collapse: collapse;
+  border: solid 2px var(--color-primary);
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+}
+#table-header th {
+  min-width: 7vw;
+}
+#table-header th:nth-child(2) {
+  min-width: 10vw;
+}
+
 .table-container {
   margin: 0 3vw;
-  max-height: 47vh;
-  border-radius: 15px;
-  overflow: hidden;
-  border: 2px solid;
+  height: 100%;
+  max-height: 40vh;
+  max-width: 85vw;
+  box-shadow: 0 0.5em 0.5em rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 15px 15px;
+  overflow: auto;
 }
 
 table {
   margin: 0;
-  width: 100%;
+  width: 650px;
   border-collapse: collapse;
   border-color: var(--color-primary);
-  table-layout: auto;
+  table-layout: fixed;
 }
-
-thead {
+table thead {
   background-color: var(--color-primary);
   color: var(--color-secondary);
 }
-
-th,
-td {
-  padding: 1em;
-  min-width: auto;
+table th,
+table td {
+  padding: 1.5em 1em;
+  min-width: 7vw;
   font-weight: var(--large-font-weight);
   text-align: center;
 }
-
-tbody tr:nth-child(even) {
+table td:nth-child(2) {
+  min-width: 10vw;
+}
+table tbody tr:nth-child(even) {
   background-color: var(--color-secondary);
 }
-
-tbody tr:nth-child(odd) {
+table tbody tr:nth-child(odd) {
   background-color: #dee4f9;
 }
 
-caption {
-  display: block;
+.table-legend {
   margin-top: 2vh;
+  width: 100%;
 }
-caption span {
+
+.legend-visible {
+  width: 700px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  right: 50%;
+  line-height: 2.1em;
+  font-size: 1.5em;
+  color: var(--color-secondary);
+  background-color: var(--color-primary);
+  padding: 1em;
+  border-radius: 15px;
+  animation: slideUp 8s ease forwards;
+}
+@keyframes slideUp {
+  0% {
+    bottom: -10vh;
+    opacity: 0;
+  }
+  20% {
+    bottom: 12vh;
+    opacity: 1;
+  }
+  80% {
+    bottom: 12vh;
+    opacity: 1;
+  }
+  100% {
+    bottom: -10vh;
+    opacity: 0;
+  }
+}
+.legend-visible span {
   font-weight: bold;
   text-decoration: underline;
 }
 
-/* Mobile 375px - 768px*/
+.legend-hidden {
+  display: none;
+}
+
+.circle-info-container {
+  width: 50px;
+}
+.circle-info-container img {
+  width: 50px;
+}
+
+/* Mobile 425px - 768px*/
 @media (max-width: 768px) {
-  .table-container {
-    margin: 0 3vw;
+  #table-header {
+    width: 425px;
   }
-  th,
-  td {
-    padding: 0.7em;
+  #table-header th {
+    min-width: 0;
+  }
+  #table-header col:nth-child(8),
+  #table-header th:nth-child(8) {
+    display: none;
+    width: 0 !important;
+  }
+  .table-container {
+    margin: 0;
+    width: 420px;
+    max-width: none;
+    border: none;
+  }
+  table {
+    width: 420px;
+  }
+  table col:nth-child(8),
+  table td:nth-child(8) {
+    display: none;
+    width: 0 !important;
+  }
+  table th,
+  table td {
+    padding: 1.5em 0;
     font-weight: var(--large-font-weight);
     text-align: center;
-    border: var(--color-primary) solid 1px;
-    font-size: 0.9em;
-  }
-  th:nth-child(2),
-  td:nth-child(2) {
-    padding: 0 3vw;
-  }
-  th:nth-child(7),
-  td:nth-child(7),
-  th:nth-child(8),
-  td:nth-child(8) {
-    display: none; /* Cache les colonnes 5 et 6 */
+    font-size: 0.7em;
   }
   caption {
     font-size: 0.8em;
     margin: 1em;
+  }
+}
+/* Mobile : 375px - 425px */
+@media (max-width: 425px) {
+  #table-header {
+    width: 375px;
+  }
+  #table-header col:nth-child(4),
+  #table-header th:nth-child(4),
+  #table-header col:nth-child(5),
+  #table-header th:nth-child(5),
+  #table-header col:nth-child(6),
+  #table-header th:nth-child(6),
+  #table-header col:nth-child(8),
+  #table-header th:nth-child(8) {
+    display: none;
+    width: 0 !important;
+  }
+  .table-container {
+    width: 370px;
+  }
+  table {
+    width: 370px;
+  }
+  table col:nth-child(4),
+  table td:nth-child(4),
+  table col:nth-child(5),
+  table td:nth-child(5),
+  table col:nth-child(6),
+  table td:nth-child(6),
+  table col:nth-child(8),
+  table td:nth-child(8) {
+    display: none;
+    width: 0 !important;
+  }
+  table th,
+  table td {
+    padding: 1.6em 0;
+    font-weight: var(--large-font-weight);
+    text-align: center;
+    font-size: 0.7em;
+  }
+  .legend-visible {
+    width: 370px;
+    font-size: 1em;
+  }
+  .circle-info-container {
+    width: 30px;
+  }
+  .circle-info-container img {
+    width: 30px;
   }
 }/*# sourceMappingURL=RankingBoard.css.map */

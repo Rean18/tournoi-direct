@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import '../styles/RankingBoard/RankingBoard.css';
 import { useEffect, useState } from 'react';
+import { CircleInfo } from '../components/common/circleInfo';
+
 export function RankingBoard() {
   // eslint-disable-next-line no-unused-vars
   const [parsedTeamsData, setParsedTeamsData] = useState(() => {
@@ -9,7 +11,6 @@ export function RankingBoard() {
     return teamsData ? JSON.parse(teamsData) : [];
   });
   console.log('Data pour classement', parsedTeamsData);
-
   const [displayedRank, setDisplayedRank] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
@@ -44,11 +45,40 @@ export function RankingBoard() {
   };
 
   return (
-    <div>
+    <div className="ranking-container">
+      <table id="table-header">
+        <colgroup>
+          <col style={{ width: '8%' }} />
+          <col style={{ width: '22%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Equipe</th>
+            <th scope="col">Mj</th>
+            <th scope="col">V</th>
+            <th scope="col">N</th>
+            <th scope="col">D</th>
+            <th scope="col">B</th>
+            <th scope="col">Diff</th>
+            <th scope="col">Pts</th>
+          </tr>
+        </thead>
+      </table>
       <div
         id="scrollableTableContainer"
         className="table-container"
-        style={{ height: 'auto', overflow: 'auto' }}
+        style={{
+          height: 'auto',
+          overflow: 'auto',
+        }}
       >
         <InfiniteScroll
           dataLength={displayedRank.length}
@@ -57,20 +87,17 @@ export function RankingBoard() {
           scrollableTarget="scrollableTableContainer"
         >
           <table>
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Equipe</th>
-                <th scope="col">Mj</th>
-                <th scope="col">V</th>
-                <th scope="col">N</th>
-                <th scope="col">D</th>
-                <th scope="col">Bm</th>
-                <th scope="col">Be</th>
-                <th scope="col">Diff</th>
-                <th scope="col">Pts</th>
-              </tr>
-            </thead>
+            <colgroup>
+              <col style={{ width: '8%' }} />
+              <col style={{ width: '22%' }} />
+              <col style={{ width: '10%' }} />
+              <col style={{ width: '10%' }} />
+              <col style={{ width: '10%' }} />
+              <col style={{ width: '10%' }} />
+              <col style={{ width: '10%' }} />
+              <col style={{ width: '10%' }} />
+              <col style={{ width: '10%' }} />
+            </colgroup>
 
             <tbody>
               {sortedTeamsData.map((team, index) => (
@@ -81,8 +108,9 @@ export function RankingBoard() {
                   <td>{team.totalVictories}</td>
                   <td>{team.totalDraws}</td>
                   <td>{team.totalDefeats}</td>
-                  <td>{team.totalGoalsScored}</td>
-                  <td>{team.totalGoalsConceded}</td>
+                  <td>
+                    {team.totalGoalsScored}:{team.totalGoalsConceded}
+                  </td>
                   <td>{team.totalGoalsScored - team.totalGoalsConceded}</td>
                   <td>{team.totalPoints}</td>
                 </tr>
@@ -92,11 +120,23 @@ export function RankingBoard() {
         </InfiniteScroll>
       </div>
       <caption>
-        <span>Mj</span> = Matches joués / <span>V</span> = victoire /{' '}
-        <span>D</span> = Défaite / <span>N</span> = Nul <br />
-        <span>Bm</span> : Buts marqués / <span>Be</span> : Buts encaissés /{' '}
-        <span>Diff</span> : Différence de buts <br />
-        <span>Pts</span> : Points
+        <CircleInfo
+          message={
+            <>
+              <div>
+                <span>Mj</span> = Matches joués / <span>V</span> = victoire /{' '}
+                <span>D</span> = Défaite / <span>N</span> = Nul <br />
+              </div>
+              <div>
+                <span>Bm</span> : Buts marqués / <span>Be</span> : Buts
+                encaissés / <span>Diff</span> : Différence de buts <br />
+              </div>
+              <div>
+                <span>Pts</span> : Points
+              </div>
+            </>
+          }
+        />
       </caption>
     </div>
   );

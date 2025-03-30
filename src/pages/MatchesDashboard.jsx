@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { roundRobin } from '../utils/matchLogic.js';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import '../styles/MatchesDashboard/MatchesDashboard.css';
+import DOMpurify from 'dompurify';
 
 export function MatchesDashboard() {
   const teamsData = localStorage.getItem('teamsData');
@@ -23,6 +24,10 @@ export function MatchesDashboard() {
   const [chunks, setChunks] = useState([]);
   const [displayedMatches, setDisplayedMatches] = useState([]);
   const [hasMore, setHasMore] = useState(true);
+  const [errorInputMessage, setErrorInputMessage] = useState('error-hidden');
+  const sanitizeInput = (input) => {
+    return DOMpurify.sanitize(input);
+  };
 
   const matches = useMemo(
     () => roundRobin(teamsList, twoLeggedTie),
@@ -32,8 +37,17 @@ export function MatchesDashboard() {
 
   const handleStats = (e) => {
     // Gestion des Inputs
-    const { id, value } = e.target;
-    if (value === '') {
+    const id = e.target.id;
+    const value = e.target.value;
+    const sanitizedValue = sanitizeInput(value);
+
+    if (sanitizedValue.includes('-') || sanitizedValue.includes('.')) {
+      setErrorInputMessage('error-visible');
+      setTimeout(() => setErrorInputMessage('error-hidden'), 4000);
+      return;
+    }
+
+    if (sanitizedValue === '') {
       setInputValues((prevValues) => {
         const newValues = { ...prevValues, [id]: '' };
         localStorage.setItem('inputValues', JSON.stringify(newValues));
@@ -191,6 +205,9 @@ export function MatchesDashboard() {
       className="matches-container"
       style={{ height: '50vh', overflow: 'auto' }}
     >
+      <div className={errorInputMessage}>
+        <p> Erreur, le nombre doit être un entier positif</p>
+      </div>
       <InfiniteScroll
         dataLength={displayedMatches.length}
         next={fetchMoreData}

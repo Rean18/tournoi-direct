@@ -12,9 +12,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  row-gap: 1rem;
-  -moz-column-gap: 1rem;
-       column-gap: 1rem;
+  row-gap: 2.5em;
+  -moz-column-gap: 1em;
+       column-gap: 1em;
   flex-wrap: wrap;
 }
 #teams-list li {
@@ -52,6 +52,12 @@
   height: 20px;
 }
 
+/* Mobile 425px - 768px */
+@media (max-width: 768px) {
+  #teams-list {
+    max-width: 60vw;
+  }
+}
 /* Mobile ---> 425px*/
 @media (max-width: 425px) {
   #teams-list {
@@ -61,7 +67,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    row-gap: 3.5vh;
+    row-gap: 1.5em;
   }
   #teams-list li {
     width: 90%;

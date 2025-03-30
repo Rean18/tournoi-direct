@@ -3,6 +3,7 @@ import '../styles/CompetitionType/CompetitionType.css';
 import { useState } from 'react';
 import { ConfirmWindow } from './ConfirmWindow';
 import { BlueCard } from '../components/common/blueCard';
+import { CircleInfo } from '../components/common/circleInfo';
 
 export function ChampionshipDataChoice() {
   const [showConfirm, setShowConfirm] = useState(false);
@@ -46,27 +47,35 @@ export function ChampionshipDataChoice() {
           confirmRoute="rules"
         />
       )}
+
       <div className="rules-page">
+        <h1>Tournoi Direct</h1>
         <BlueCard
           cardTitle="Commencer ou continuer le championnat"
           buttons={buttonConfig}
         />
-        <div className="rules-container">
-          <div className="rules">
-            <h4>Continuer : </h4>
-            <p>
-              Vous gardez les mêmes données enregistrées précédemment (équipes,
-              résultats)
-            </p>
-          </div>
-          <div className="rules">
-            <h4>⚠️ Nouveau : </h4>
-            <p>
-              Vous effacer les données enregistrées précédemment et il sera
-              impossible de les récupérer
-            </p>
-          </div>
-        </div>
+        <CircleInfo
+          message={
+            <>
+              <div>
+                <div>
+                  <h4>Continuer : </h4>
+                  <p>
+                    Vous gardez les mêmes données enregistrées précédemment
+                    (équipes, résultats)
+                  </p>
+                </div>
+                <div>
+                  <h4>⚠️ Nouveau : </h4>
+                  <p>
+                    Vous effacer les données enregistrées précédemment et il
+                    sera impossible de les récupérer
+                  </p>
+                </div>
+              </div>
+            </>
+          }
+        />
       </div>
 
       <Outlet />

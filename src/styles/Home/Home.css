@@ -10,4 +10,11 @@
   max-width: 800px;
   max-height: 300px;
   margin-bottom: 2rem;
+}
+
+/* Mobile ----> 425px */
+@media (max-width: 425px) {
+  #home-logo {
+    width: 200px;
+  }
 }/*# sourceMappingURL=Home.css.map */

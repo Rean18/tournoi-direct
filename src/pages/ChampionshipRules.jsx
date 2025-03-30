@@ -30,10 +30,17 @@ export function ChampionshipRules() {
   const handleChange = (e) => {
     if (e.target.type === 'number') {
       const numberValue = Number(e.target.value);
-      if (numberValue < 0 || !Number.isInteger(numberValue)) {
+      if (
+        numberValue < 0 ||
+        !Number.isInteger(numberValue) ||
+        numberValue > 100
+      ) {
         console.log('erreur le nombre doit être un entier positif');
         setErrorFormMessage('error-visible');
+        setTimeout(() => setErrorFormMessage('error-hidden'), 4000);
         return;
+      } else {
+        setErrorFormMessage('error-hidden');
       }
     }
     const rawValue = e.target.value;
@@ -115,6 +122,10 @@ export function ChampionshipRules() {
 
   return (
     <div className="main-content">
+      <div className={errorFormMessage}>
+        <p> Erreur, le nombre doit être un entier positif</p>
+      </div>
+      <h1>Tournoi Direct</h1>
       <BlueCard cardTitle="Configurez le championnat" buttons={buttonsConfig}>
         <form id="options" onSubmit={handleSubmit}>
           {formConfig.map((field) => {
@@ -154,11 +165,7 @@ export function ChampionshipRules() {
               );
             }
           })}
-          <div className="error-container">
-            <p className={errorFormMessage}>
-              Erreur, le nombre doit être un entier positif
-            </p>
-          </div>
+
           <Button buttonText="Validez" style="light" type="submit"></Button>
         </form>
       </BlueCard>
