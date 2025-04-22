@@ -18,7 +18,7 @@
 }
 .button-container .light {
   width: 40vw;
-  height: 8vh;
+  height: 8dvh;
   font-weight: var(--large-font-weight);
   border-radius: 15px;
   background-color: var(--color-secondary);
@@ -37,6 +37,5 @@
   }
   .button-container .light {
     width: 50vw;
-    height: 6vh;
   }
 }/*# sourceMappingURL=button.css.map */

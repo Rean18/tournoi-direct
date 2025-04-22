@@ -1,41 +1,40 @@
 export function roundRobin(teamsList, twoLeggedTie) {
-  if (teamsList.length % 2 !== 0) {
-    teamsList.push('bye');
+  const teams = [...teamsList];
+  // Si le nombre d'équipes est impair, ajouter 'bye'
+  if (teams.length % 2 !== 0) {
+    teams.push('bye');
   }
-  let nRotation = 0;
-  const nTeams = teamsList.length;
-  console.log(teamsList);
-  if (twoLeggedTie === true) {
-    nRotation = (nTeams - 1) * 2;
-  } else {
-    nRotation = nTeams - 1;
-  }
+  const nTeams = teams.length;
+  // Le nombre de tours est nTeams - 1 (chaque équipe rencontre toutes les autres une seule fois)
+  const rounds = nTeams - 1;
+  let matches = [];
 
-  const fixedTeam = teamsList[0]; //
-  const rotatingTeams = teamsList.slice(1);
-  let allMatches = [];
-
-  for (let day = 0; day < nRotation; day++) {
-    const dayMatches = [];
-    const firstOpponent = rotatingTeams[rotatingTeams.length - 1]; // l'équipe fixe joue contre le dernier du tableau à chaque rotation
-    dayMatches.push([fixedTeam, firstOpponent]);
-
-    // on fait jouer les autres équipes en parcourant le tableau
-    for (let i = 0; i < rotatingTeams.length - 1; i += 2) {
-      // incrémentation de 2 car 2 équipes se rencontrent
-      const home = rotatingTeams[i];
-      const away = rotatingTeams[i + 1];
-      dayMatches.push([home, away]);
+  // Pour chaque round
+  for (let round = 0; round < rounds; round++) {
+    let roundMatches = [];
+    // Pour chaque paire, on prend l'élément i et son opposé (nTeams - 1 - i)
+    for (let i = 0; i < nTeams / 2; i++) {
+      const home = teams[i];
+      const away = teams[nTeams - 1 - i];
+      // Si l'un des matchs implique 'bye', on ne l'ajoute pas
+      if (home !== 'bye' && away !== 'bye') {
+        roundMatches.push([home, away]);
+      }
     }
+    // Ajouter tous les matchs de ce round au tableau global
+    matches.push(...roundMatches);
 
-    allMatches.push(dayMatches);
-    rotatingTeams.unshift(rotatingTeams.pop());
+    // Pour la rotation : on garde le premier élément (fixe)
+    // et on déplace le dernier élément à la deuxième position.
+    // Cela fait tourner les équipes tout en conservant une configuration round robin.
+    teams.splice(1, 0, teams.pop());
   }
 
-  const matchesList = allMatches.flat();
-  const allMatchesWithoutBye = matchesList.filter(
-    (match) => !match.includes('bye')
-  );
+  // Si twoLeggedTie est activé, on crée un second tour (match retour)
+  if (twoLeggedTie) {
+    const returnMatches = matches.map((pair) => [pair[1], pair[0]]);
+    matches = [...matches, ...returnMatches];
+  }
 
-  return allMatchesWithoutBye;
+  return matches;
 }

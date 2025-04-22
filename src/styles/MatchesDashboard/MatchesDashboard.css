@@ -37,7 +37,7 @@
 }
 #matches-round input {
   width: 6vw;
-  height: 4vh;
+  height: 4dvh;
   margin-bottom: 2vh;
   border: solid 2px;
   border-color: var(--color-primary);
@@ -66,13 +66,17 @@
 @media (max-width: 425px) {
   #matches-round label {
     width: 23vw;
+    height: 8dvh;
     font-size: 1em;
+    line-height: 8dvh;
   }
   #matches-round .input-row {
     justify-content: space-around;
   }
   #matches-round input {
     width: 12vw;
+    height: 8dvh;
     font-size: 1em;
+    line-height: 8dvh;
   }
 }/*# sourceMappingURL=MatchesDashboard.css.map */

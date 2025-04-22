@@ -8,9 +8,18 @@
   align-items: center;
   row-gap: 2vh;
   background-color: var(--color-primary);
+  border: solid 3px var(--color-primary);
   border-radius: 20px;
+  overflow: scroll;
 
-  h3 {
+  .scrollable-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h2 {
     max-width: 40vh;
     text-align: center;
     margin-top: 2rem;
@@ -24,5 +33,10 @@
     width: 75vw;
     justify-content: space-between;
     row-gap: 1vh;
+
+    h2 {
+      font-size: 1em;
+      margin-top: 1em;
+    }
   }
 }

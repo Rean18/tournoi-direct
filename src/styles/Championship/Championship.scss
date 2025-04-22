@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: scroll;
 
   label {
     font-size: 1.2em;
@@ -140,7 +141,7 @@
   #championship-menu {
     button {
       width: 27vw;
-      height: 6vh;
+      height: 7dvh;
       font-size: 0.9em;
     }
   }

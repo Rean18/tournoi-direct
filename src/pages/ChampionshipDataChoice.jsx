@@ -59,17 +59,17 @@ export function ChampionshipDataChoice() {
             <>
               <div>
                 <div>
-                  <h4>Continuer : </h4>
-                  <p>
-                    Vous gardez les mêmes données enregistrées précédemment
-                    (équipes, résultats)
-                  </p>
-                </div>
-                <div>
                   <h4>⚠️ Nouveau : </h4>
                   <p>
                     Vous effacer les données enregistrées précédemment et il
                     sera impossible de les récupérer
+                  </p>
+                </div>
+                <div>
+                  <h4>Continuer : </h4>
+                  <p>
+                    Vous gardez les mêmes données enregistrées précédemment
+                    (équipes, résultats)
                   </p>
                 </div>
               </div>

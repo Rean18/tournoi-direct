@@ -72,6 +72,19 @@ a {
   width: 50px;
 }
 
+input[type='number'] {
+  -moz-appearance: textfield; /* Pour Firefox */
+  -webkit-appearance: none; /* Pour Chrome, Safari, Edge et Opera */
+  appearance: none; /* Propriété standard */
+}
+
+/* Pour Chrome, Safari, Edge et Opera */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /* Mobile 375px - 768px*/
 @media (max-width: 768px) {
   main {
@@ -81,7 +94,7 @@ a {
     font-size: 1.8em;
   }
   h2 {
-    font-size: 1.4em;
+    font-size: 1.3em;
   }
   h3 {
     font-size: 1.3em;

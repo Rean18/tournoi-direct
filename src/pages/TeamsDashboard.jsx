@@ -122,6 +122,15 @@ export function TeamsDashboard() {
                   value={team.name}
                   name={`team-${team.id}`}
                   onChange={(e) => handleTeamName(team.id, e.target.value)}
+                  onFocus={(e) => {
+                    e.target.select();
+                    setTimeout(() => {
+                      e.target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center',
+                      });
+                    }, 100);
+                  }}
                 />
                 <div className="image-container">
                   <img src="/logo_modifier.png" alt="logo de modification" />

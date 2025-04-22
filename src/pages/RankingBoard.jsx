@@ -124,12 +124,12 @@ export function RankingBoard() {
           message={
             <>
               <div>
-                <span>Mj</span> = Matches joués / <span>V</span> = victoire /{' '}
-                <span>D</span> = Défaite / <span>N</span> = Nul <br />
+                <span>Mj</span> = Matches joués <br /> <span>V</span> = victoire
+                / <span>D</span> = Défaite <br /> <span>N</span> = Nul <br />
               </div>
               <div>
-                <span>Bm</span> : Buts marqués / <span>Be</span> : Buts
-                encaissés / <span>Diff</span> : Différence de buts <br />
+                <span>Bm</span> : Buts marqués <br /> <span>Be</span> : Buts
+                encaissés <br /> <span>Diff</span> : Différence de buts <br />
               </div>
               <div>
                 <span>Pts</span> : Points

@@ -53,21 +53,23 @@
 /* mobile ---> 425px */
 @media (max-width: 425px) {
   .info-visible {
-    width: 370px;
+    width: 300px;
     height: auto;
-    max-height: 200px;
-    top: 50vh;
+    max-height: 300px;
+    top: 30dvh;
+    font-size: 0.9em;
+    line-height: 1.4em;
+    overflow: scroll;
+    padding: 1.3em;
+  }
+  .info-visible h4 {
     font-size: 1em;
-    line-height: 1.2em;
   }
   .circle-info-container {
     width: 30px;
   }
   .circle-info-container img {
     width: 30px;
-  }
-  h4 {
-    font-size: 1em;
   }
   .message-container {
     min-height: 50%;

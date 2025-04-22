@@ -128,18 +128,20 @@ export function MatchesDashboard() {
               newDefeat[teamInputId] = 0;
               newDraw[teamInputId] = 0;
             } else {
+              newDefeat[teamInputId] = 0;
+              newDraw[teamInputId] = 0;
+              newVictory[teamInputId] = 0;
               if (newGoalsScored[teamInputId] < newGoalsConceded[teamInputId]) {
                 newPoints[teamInputId] = defeatPoints;
                 newDefeat[teamInputId] = 1;
-              }
-              if (
+              } else if (
                 newGoalsScored[teamInputId] === newGoalsConceded[teamInputId]
               ) {
                 newPoints[teamInputId] = drawPoints;
                 newDraw[teamInputId] = 1;
-              }
-
-              if (newGoalsScored[teamInputId] > newGoalsConceded[teamInputId]) {
+              } else if (
+                newGoalsScored[teamInputId] > newGoalsConceded[teamInputId]
+              ) {
                 newPoints[teamInputId] = victoryPoints;
                 newVictory[teamInputId] = 1;
               }
@@ -231,6 +233,14 @@ export function MatchesDashboard() {
                   name={team[0][0]}
                   type="number"
                   onChange={handleStats}
+                  onFocus={(e) => {
+                    setTimeout(() => {
+                      e.target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center',
+                      });
+                    }, 100);
+                  }}
                   value={inputValues[`${chunkIndex}-${matchIndex}-${team[0]}`]}
                 />{' '}
                 <p>—</p>
@@ -239,6 +249,14 @@ export function MatchesDashboard() {
                   name={team[1]}
                   type="number"
                   onChange={handleStats}
+                  onFocus={(e) => {
+                    setTimeout(() => {
+                      e.target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center',
+                      });
+                    }, 100);
+                  }}
                   value={inputValues[`${chunkIndex}-${matchIndex}-${team[1]}`]}
                 />
                 <label>{team[1]}</label>

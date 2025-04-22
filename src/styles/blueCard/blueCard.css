@@ -8,9 +8,17 @@
   align-items: center;
   row-gap: 2vh;
   background-color: var(--color-primary);
+  border: solid 3px var(--color-primary);
   border-radius: 20px;
+  overflow: scroll;
 }
-.blue-card h3 {
+.blue-card .scrollable-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.blue-card h2 {
   max-width: 40vh;
   text-align: center;
   margin-top: 2rem;
@@ -23,5 +31,9 @@
     width: 75vw;
     justify-content: space-between;
     row-gap: 1vh;
+  }
+  .blue-card h2 {
+    font-size: 1em;
+    margin-top: 1em;
   }
 }/*# sourceMappingURL=blueCard.css.map */
