@@ -33,7 +33,7 @@ Développée en React avec Vite, l'application est 100 % frontend et fonctionn
 - 🧼 DOMPurify (assainissement des entrées utilisateur)
 - ♻️ React Infinite Scroll Component
 - 📁 LocalStorage (sans base de données)
-- 🎨 CSS Modules
+- 🎨 SASS
 
 ---
 
