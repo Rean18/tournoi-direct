@@ -43,7 +43,7 @@ L’organisation des matchs s’appuie sur l’algorithme **Round Robin**, qui g
 ## 🧩 Installation locale
 
 ```bash
-git clone https://github.com/ton-utilisateur/tournoi-direct.git
+git clone https://github.com/Rean18/tournoi-direct.git
 cd tournoi-direct
 npm install
 npm run dev
