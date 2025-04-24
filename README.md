@@ -1,8 +1,11 @@
-# 🏆 Tournoi Direct
+# 🏆 Tournoi Direct - v1.0
 
 **Tournoi Direct** est une application web permettant d'organiser facilement des tournois sportifs (championnats ou coupes), de générer automatiquement les rencontres, de gérer les scores et d'afficher un classement dynamique en temps réel.
 
 Développée en React avec Vite, l'application est 100 % frontend et fonctionne entièrement depuis le navigateur grâce au `localStorage`.
+
+> 🎉 **Version 1.0** – Gestion complète des championnats  
+> 🛠️ **Fonctionnalité en cours : gestion des coupes à élimination directe**
 
 ---
 
